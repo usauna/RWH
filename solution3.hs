@@ -1,6 +1,6 @@
 -- RWH第三章　解答
 
-import Data.List (sortBy,　minimumBy)
+import Data.List (sortBy, minimumBy)
 import Data.Function (on)
 
 
