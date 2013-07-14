@@ -75,7 +75,7 @@ isPalindrome' :: (Eq a) => [a] -> Bool
 isPalindrome' xs = helper [] xs xs
     where
         helper list1 [] list2 = list1 == list2
-        helper list1 [_] list2 = list1 == list2
+        helper list1 [_] (_:list2) = list1 == list2
         helper list1 (_:_:xs) (l:list2) = helper (l:list1) xs list2
 
 
