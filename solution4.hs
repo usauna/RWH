@@ -16,7 +16,7 @@ safeInit [] = Nothing
 safeInit xs = Just (init xs)
 
 -- 出来上がりがどうなればいいのかよくわからなかった。
--- これは、splitWith (not.isSpace)がwordsになるようにしたつもり
+-- これは、splitWith isSpace がwordsになるようにしたつもり
 
 splitWith :: (a -> Bool) -> [a] -> [[a]]
 splitWith _ [] = []
@@ -24,7 +24,7 @@ splitWith p xs
 	| null first = splitWith p rest'
 	| otherwise = first: splitWith p rest'
 	where
-		(first, rest) = span p xs
+		(first, rest) = break p xs
 		rest' = drop 1 rest -- restの最初はpがfalseを返すような値が入ってるはず。 
 		
 headOfLine :: String -> IO ()
