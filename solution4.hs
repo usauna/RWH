@@ -1,28 +1,22 @@
 import Data.List(transpose) 
 safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
-safeHead (x:_) = Just x
+safeHead xs = Just (head xs)
 
 safeTail :: [a] -> Maybe [a]
 safeTail [] = Nothing
-safeTail (_:xs) = Just xs
+safeTail xs = Just (tail xs)
 
 safeLast :: [a] -> Maybe a
 safeLast [] = Nothing
-safeLast [x] = Just x
-safeLast (_:xs) = safeLast xs
+safeLast xs = Just (last xs)
 
 safeInit :: [a] -> Maybe [a]
 safeInit [] = Nothing
-safeInit [_] = Just []
-safeInit (x:xs) = let Just ys = safeInit xs in Just (x:ys)
-
-safeInit' :: [a] -> Maybe [a]
-safeInit' [] = Nothing
-safeInit' xs = Just (init xs)
+safeInit xs = Just (init xs)
 
 -- 出来上がりがどうなればいいのかよくわからなかった。
--- これは、splitWith isSpaceがwordsになるようにしたつもり
+-- これは、splitWith (not.isSpace)がwordsになるようにしたつもり
 
 splitWith :: (a -> Bool) -> [a] -> [[a]]
 splitWith _ [] = []
@@ -37,5 +31,4 @@ headOfLine :: String -> IO ()
 headOfLine str = putStrLn (map head (lines str))
 
 transposeText :: String -> String
-transposeText str = unlines (transpose  (lines str))
-
+transposeText str = unlines (transpose  (lines str)) -- transpose はData.Listの関数。
